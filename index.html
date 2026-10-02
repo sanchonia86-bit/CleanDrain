@@ -1,0 +1,2599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CleanDrain | Community-Based Clogged Drainage Reporting System</title>
+
+<style>
+/* =========================================================
+   CLEAN DRAIN - CSS
+========================================================= */
+
+:root {
+    --green: #087f5b;
+    --dark-green: #056044;
+    --light-green: #e9f8f2;
+    --blue: #1976d2;
+    --yellow: #f59f00;
+    --red: #d94841;
+    --purple: #7048e8;
+    --dark: #17202a;
+    --gray: #6c757d;
+    --light-gray: #f4f6f8;
+    --white: #ffffff;
+    --border: #dfe5e9;
+    --shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light-gray);
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, var(--dark-green), var(--green));
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    flex-shrink: 0;
+}
+
+.nav-buttons {
+    margin-left: auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    background: white;
+    color: var(--green);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+.logo h1 {
+    font-size: 21px;
+}
+
+.logo span {
+    font-size: 12px;
+    opacity: .85;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-buttons button {
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 9px 12px;
+    cursor: pointer;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.nav-buttons button:hover,
+.nav-buttons button.active {
+    background: rgba(255,255,255,.18);
+}
+
+/* MAIN */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* HERO */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        rgba(8,127,91,.95),
+        rgba(5,96,68,.95)
+    );
+    color: white;
+    border-radius: 18px;
+    padding: 45px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.hero h2 {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    max-width: 750px;
+    font-size: 17px;
+    opacity: .95;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+/* BUTTONS */
+
+.btn {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: var(--green);
+    color: white;
+}
+
+.btn-white {
+    background: white;
+    color: var(--green);
+}
+
+.btn-blue {
+    background: var(--blue);
+    color: white;
+}
+
+.btn-red {
+    background: var(--red);
+    color: white;
+}
+
+.btn-purple {
+    background: var(--purple);
+    color: white;
+}
+
+.btn-gray {
+    background: #e9ecef;
+    color: var(--dark);
+}
+
+/* CARDS */
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+}
+
+.section-title {
+    margin-bottom: 18px;
+}
+
+.section-title h2 {
+    font-size: 25px;
+}
+
+.section-title p {
+    color: var(--gray);
+}
+
+/* FEATURES */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+    .feature {
+    width: 100%;
+    background: white;
+    border-radius: 13px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.feature:hover,
+.feature:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.feature:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 3px;
+}
+
+.feature-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.feature h3 {
+    margin-bottom: 5px;
+}
+
+.feature p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+/* FORM */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--green);
+}
+
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+/* PHOTO UPLOAD */
+
+.upload-area {
+    border: 2px dashed #aab7b1;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    background: #f8fffb;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: var(--green);
+    background: var(--light-green);
+}
+
+.upload-area input {
+    display: none;
+}
+
+.photo-preview {
+    display: none;
+    margin-top: 15px;
+}
+
+.photo-preview img {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* AI BOX */
+
+.ai-box {
+    background: linear-gradient(135deg, #f3efff, #ffffff);
+    border: 1px solid #d8ccff;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 20px;
+}
+
+.ai-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--purple);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.ai-result {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    border-left: 5px solid var(--purple);
+}
+
+/* STATUS */
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-received {
+    background: #e7f5ff;
+    color: #1864ab;
+}
+
+.status-inspection {
+    background: #fff3bf;
+    color: #8d6200;
+}
+
+.status-progress {
+    background: #e5dbff;
+    color: #5f3dc4;
+}
+
+.status-resolved {
+    background: #d3f9d8;
+    color: #087f23;
+}
+
+/* REPORT TRACKER */
+
+.tracker {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    position: relative;
+}
+
+.tracker::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 5%;
+    right: 5%;
+    height: 4px;
+    background: #ddd;
+    z-index: 0;
+}
+
+.step {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 25%;
+}
+
+.step-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin: auto;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.step.completed .step-circle {
+    background: var(--green);
+    color: white;
+}
+
+.step.current .step-circle {
+    background: var(--yellow);
+    color: white;
+}
+
+.step span {
+    font-size: 12px;
+    display: block;
+    margin-top: 7px;
+}
+
+/* DASHBOARD */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.stat-number {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.stat-label {
+    color: var(--gray);
+}
+
+/* TABLE */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+th {
+    background: #f8f9fa;
+}
+
+.report-thumbnail {
+    width: 75px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* REPORT CARDS */
+
+.report-list {
+    display: grid;
+    gap: 15px;
+}
+
+.report-card {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    gap: 18px;
+    align-items: center;
+}
+
+.report-card img {
+    width: 130px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.report-info h3 {
+    margin-bottom: 5px;
+}
+
+.report-info p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.report-actions {
+    text-align: right;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.close {
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* MAP */
+
+.map-box {
+    height: 230px;
+    background:
+        linear-gradient(45deg, #dff3e7 25%, transparent 25%),
+        linear-gradient(-45deg, #dff3e7 25%, transparent 25%),
+        #edf7f0;
+    background-size: 40px 40px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark-green);
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* EMPTY */
+
+.empty {
+    text-align: center;
+    padding: 45px;
+    color: var(--gray);
+}
+
+/* FOOTER */
+
+footer {
+    background: #123b2a;
+    color: white;
+    margin-top: 40px;
+    padding: 25px;
+    text-align: center;
+}
+
+footer p {
+    opacity: .8;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+    .feature-grid,
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-buttons {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .hero {
+        padding: 28px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+    .feature-grid,
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .report-card {
+        grid-template-columns: 1fr;
+    }
+
+    .report-card img {
+        width: 100%;
+        height: 180px;
+    }
+
+    .report-actions {
+        text-align: left;
+    }
+
+    .tracker span {
+        font-size: 9px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<header>
+
+<div class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            💧
+        </div>
+
+        <div>
+            <h1>CleanDrain</h1>
+            <span>Community-Based Drainage Reporting</span>
+        </div>
+
+    </div>
+
+    <div class="nav-buttons">
+
+        <button class="active" data-page="home" onclick="showPage('home', this)">
+            Home
+        </button>
+
+        <button data-page="report" onclick="showPage('report', this)">
+            Report
+        </button>
+
+        <button data-page="track" onclick="showPage('track', this)">
+            Track Report
+        </button>
+
+        <button data-page="dashboard" onclick="showPage('dashboard', this)">
+            Barangay Dashboard
+        </button>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+<!-- =========================================================
+     HOME PAGE
+========================================================= -->
+
+<section id="homePage" class="page active">
+
+    <div class="hero">
+
+        <h2>Keep Our Community Drainage Clean.</h2>
+
+        <p>
+            CleanDrain allows residents to report clogged drains,
+            canals, and drainage problems directly to barangay
+            personnel. Submit evidence, report the location,
+            and monitor the progress of your report.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="btn btn-white"
+                onclick="showPage('report')">
+                📸 Report a Clogged Drain
+            </button>
+
+            <button
+                class="btn"
+                style="background:rgba(255,255,255,.15);color:white;"
+                onclick="showPage('track')">
+                🔎 Track My Report
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <a href="#reportPage" class="feature" onclick="showPage('report'); return false;">
+
+            <div class="feature-icon">📷</div>
+
+            <h3>Photo Evidence</h3>
+
+            <p>
+                Attach a photo showing the clogged drainage,
+                canal, garbage accumulation, or flooding.
+            </p>
+
+        </a>
+
+
+        <a href="#reportPage" class="feature" onclick="showPage('report'); return false;">
+
+            <div class="feature-icon">📍</div>
+
+            <h3>Report Location</h3>
+
+            <p>
+                Provide the location so barangay personnel
+                can identify where the problem occurred.
+            </p>
+
+        </a>
+
+
+        <a href="#reportPage" class="feature" onclick="showPage('report'); return false;">
+
+            <div class="feature-icon">🤖</div>
+
+            <h3>AI-Assisted Analysis</h3>
+
+            <p>
+                The system analyzes the report description
+                and suggests a problem category and severity.
+            </p>
+
+        </a>
+
+
+        <a href="#trackPage" class="feature" onclick="showPage('track'); return false;">
+
+            <div class="feature-icon">📊</div>
+
+            <h3>Track Progress</h3>
+
+            <p>
+                Residents can monitor reports from
+                Received to Resolved.
+            </p>
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="section-title">
+
+            <h2>How CleanDrain Works</h2>
+
+            <p>
+                A simple community reporting process.
+            </p>
+
+        </div>
+
+
+        <div class="tracker">
+
+            <div class="step completed">
+                <div class="step-circle">1</div>
+                <span>Report</span>
+            </div>
+
+            <div class="step">
+                <div class="step-circle">2</div>
+                <span>Inspection</span>
+            </div>
+
+            <div class="step">
+                <div class="step-circle">3</div>
+                <span>Action</span>
+            </div>
+
+            <div class="step">
+                <div class="step-circle">4</div>
+                <span>Resolved</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REPORT PAGE
+========================================================= -->
+
+<section id="reportPage" class="page">
+
+    <div class="section-title">
+
+        <h2>Report a Clogged Drainage</h2>
+
+        <p>
+            Please provide accurate information about the
+            drainage problem.
+        </p>
+
+    </div>
+
+
+    <form id="reportForm" class="card">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label for="residentName">
+                    Resident Name *
+                </label>
+
+                <input
+                    type="text"
+                    id="residentName"
+                    placeholder="Enter your full name"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="residentContact">
+                    Contact Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="residentContact"
+                    placeholder="09XXXXXXXXX">
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label for="location">
+                    Location of Clogged Drainage *
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Example: Near Barangay Hall, Main Street"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="problemType">
+                    Problem Type
+                </label>
+
+                <select id="problemType">
+
+                    <option value="">
+                        Let AI suggest a category
+                    </option>
+
+                    <option value="Clogged Drain">
+                        Clogged Drain
+                    </option>
+
+                    <option value="Blocked Canal">
+                        Blocked Canal
+                    </option>
+
+                    <option value="Garbage Accumulation">
+                        Garbage Accumulation
+                    </option>
+
+                    <option value="Flooding">
+                        Flooding / Standing Water
+                    </option>
+
+                    <option value="Damaged Drainage">
+                        Damaged Drainage
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="severity">
+                    Severity
+                </label>
+
+                <select id="severity">
+
+                    <option value="">
+                        Let AI assess severity
+                    </option>
+
+                    <option value="Low">
+                        Low
+                    </option>
+
+                    <option value="Medium">
+                        Medium
+                    </option>
+
+                    <option value="High">
+                        High
+                    </option>
+
+                    <option value="Critical">
+                        Critical
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label for="description">
+                    Description of the Problem *
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Describe what you observed. Example: The drainage is filled with garbage and water is no longer flowing."
+                    required></textarea>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Photo Evidence *
+                </label>
+
+                <label class="upload-area">
+
+                    📷
+                    <br>
+
+                    <strong>
+                        Click here to attach a photo
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        JPG, PNG, or WEBP
+                    </small>
+
+                    <input
+                        type="file"
+                        id="photoInput"
+                        accept="image/*"
+                        required>
+
+                </label>
+
+
+                <div id="photoPreview" class="photo-preview">
+
+                    <img id="previewImage" src="" alt="Photo preview">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI ASSISTANT -->
+
+        <div class="ai-box">
+
+            <div class="ai-title">
+
+                🤖 AI-Assisted Drainage Analysis
+
+            </div>
+
+            <p>
+                CleanDrain can analyze the description and
+                suggest the likely problem category and
+                severity. Barangay personnel can review
+                and change the result.
+            </p>
+
+
+            <button
+                type="button"
+                class="btn btn-purple"
+                onclick="analyzeReport()">
+
+                🤖 Analyze Report
+
+            </button>
+
+
+            <div
+                id="aiResult"
+                class="ai-result">
+
+                <strong>AI Suggestion</strong>
+
+                <p id="aiCategory"></p>
+
+                <p id="aiSeverity"></p>
+
+                <p id="aiReason"></p>
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+
+        <button
+            type="submit"
+            class="btn btn-primary">
+
+            🚨 Submit Drainage Report
+
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- =========================================================
+     TRACK PAGE
+========================================================= -->
+
+<section id="trackPage" class="page">
+
+    <div class="section-title">
+
+        <h2>Track Your Report</h2>
+
+        <p>
+            Enter your CleanDrain report ID.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="form-group">
+
+            <label>
+                Report ID
+            </label>
+
+            <input
+                type="text"
+                id="trackInput"
+                placeholder="Example: CD-123456">
+
+        </div>
+
+        <br>
+
+        <button
+            class="btn btn-primary"
+            onclick="trackReport()">
+
+            🔎 Search Report
+
+        </button>
+
+    </div>
+
+
+    <br>
+
+
+    <div
+        id="trackResult"
+        style="display:none;">
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BARANGAY DASHBOARD
+========================================================= -->
+
+<section id="dashboardPage" class="page">
+
+    <div class="section-title">
+
+        <h2>Barangay Dashboard</h2>
+
+        <p>
+            Monitor and manage community drainage reports.
+        </p>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="stat-card">
+
+            <div
+                class="stat-number"
+                id="totalReports">
+                0
+            </div>
+
+            <div class="stat-label">
+                Total Reports
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="stat-number"
+                id="inspectionReports">
+                0
+            </div>
+
+            <div class="stat-label">
+                For Inspection
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="stat-number"
+                id="progressReports">
+                0
+            </div>
+
+            <div class="stat-label">
+                Action in Progress
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="stat-number"
+                id="resolvedReports">
+                0
+            </div>
+
+            <div class="stat-label">
+                Resolved
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="form-grid">
+
+            <div>
+
+                <label>
+                    Search
+                </label>
+
+                <input
+                    type="text"
+                    id="dashboardSearch"
+                    placeholder="Search name, location or report ID"
+                    oninput="renderDashboard()">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Status Filter
+                </label>
+
+                <select
+                    id="dashboardStatus"
+                    onchange="renderDashboard()">
+
+                    <option value="All">
+                        All Statuses
+                    </option>
+
+                    <option value="Received">
+                        Received
+                    </option>
+
+                    <option value="For Inspection">
+                        For Inspection
+                    </option>
+
+                    <option value="Action in Progress">
+                        Action in Progress
+                    </option>
+
+                    <option value="Resolved">
+                        Resolved
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <br>
+
+
+    <div class="card">
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Report</th>
+                        <th>Resident</th>
+                        <th>Location</th>
+                        <th>Category</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="dashboardTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     REPORT DETAILS MODAL
+========================================================= -->
+
+<div id="reportModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Report Details</h2>
+
+            <button
+                class="close"
+                onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+        <div id="modalBody"></div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <p>
+        CleanDrain © 2026 — Community-Based Clogged Drainage
+        Reporting System
+    </p>
+
+    <p>
+        Prototype for community and barangay reporting.
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   CLEAN DRAIN - JAVASCRIPT
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   DATABASE SIMULATION
+   Uses browser LocalStorage.
+--------------------------------------------------------- */
+
+let reports = JSON.parse(
+    localStorage.getItem("cleanDrainReports")
+) || [];
+
+
+/* ---------------------------------------------------------
+   NAVIGATION
+--------------------------------------------------------- */
+
+function showPage(page, button) {
+
+    const target =
+        document.getElementById(page + "Page");
+
+    if (!target) {
+        return;
+    }
+
+    document.querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
+
+    target.classList.add("active");
+
+    document.querySelectorAll(".nav-buttons button")
+        .forEach(btn => {
+            btn.classList.remove("active");
+            btn.removeAttribute("aria-current");
+        });
+
+    const activeButton = button ||
+        document.querySelector(`.nav-buttons button[data-page="${page}"]`);
+
+    if (activeButton) {
+        activeButton.classList.add("active");
+        activeButton.setAttribute("aria-current", "page");
+    }
+
+    if (page === "dashboard") {
+        renderDashboard();
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* ---------------------------------------------------------
+   PHOTO PREVIEW
+--------------------------------------------------------- */
+
+document
+    .getElementById("photoInput")
+    .addEventListener("change", function() {
+
+        const file = this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            document
+                .getElementById("previewImage")
+                .src = e.target.result;
+
+            document
+                .getElementById("photoPreview")
+                .style.display = "block";
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+
+/* ---------------------------------------------------------
+   AI-ASSISTED REPORT ANALYSIS
+--------------------------------------------------------- */
+
+function analyzeReport() {
+
+    const description =
+        document
+        .getElementById("description")
+        .value
+        .toLowerCase();
+
+    if (!description.trim()) {
+
+        alert(
+            "Please describe the drainage problem first."
+        );
+
+        return;
+    }
+
+
+    let category = "General Drainage Problem";
+
+    let severity = "Medium";
+
+    let reason =
+        "The description indicates a drainage-related concern.";
+
+
+    /* CATEGORY DETECTION */
+
+    if (
+        description.includes("garbage") ||
+        description.includes("trash") ||
+        description.includes("waste") ||
+        description.includes("plastic")
+    ) {
+
+        category = "Garbage Accumulation";
+
+        reason =
+            "The description contains terms associated with garbage or solid waste.";
+
+    }
+
+    else if (
+        description.includes("canal") ||
+        description.includes("creek") ||
+        description.includes("waterway")
+    ) {
+
+        category = "Blocked Canal";
+
+        reason =
+            "The description refers to a canal or waterway.";
+
+    }
+
+    else if (
+        description.includes("flood") ||
+        description.includes("flooding") ||
+        description.includes("standing water") ||
+        description.includes("overflow")
+    ) {
+
+        category = "Flooding";
+
+        reason =
+            "The description indicates standing, overflowing, or flood water.";
+
+    }
+
+    else if (
+        description.includes("broken") ||
+        description.includes("damaged") ||
+        description.includes("collapsed") ||
+        description.includes("crack")
+    ) {
+
+        category = "Damaged Drainage";
+
+        reason =
+            "The description suggests physical damage to drainage infrastructure.";
+
+    }
+
+    else if (
+        description.includes("clog") ||
+        description.includes("blocked") ||
+        description.includes("blockage")
+    ) {
+
+        category = "Clogged Drain";
+
+        reason =
+            "The description contains terms associated with blockage or clogging.";
+
+    }
+
+
+    /* SEVERITY DETECTION */
+
+    if (
+        description.includes("danger") ||
+        description.includes("dangerous") ||
+        description.includes("deep") ||
+        description.includes("major") ||
+        description.includes("severe") ||
+        description.includes("overflow") ||
+        description.includes("flood")
+    ) {
+
+        severity = "High";
+
+    }
+
+    if (
+        description.includes("road flooded") ||
+        description.includes("house flooded") ||
+        description.includes("houses flooded") ||
+        description.includes("vehicle") ||
+        description.includes("impassable")
+    ) {
+
+        severity = "Critical";
+
+    }
+
+    if (
+        description.includes("small") ||
+        description.includes("minor")
+    ) {
+
+        severity = "Low";
+
+    }
+
+
+    /* DISPLAY RESULT */
+
+    document.getElementById("aiCategory")
+        .innerHTML =
+        "<strong>Suggested Category:</strong> "
+        + category;
+
+    document.getElementById("aiSeverity")
+        .innerHTML =
+        "<strong>Suggested Severity:</strong> "
+        + severity;
+
+    document.getElementById("aiReason")
+        .innerHTML =
+        "<strong>Reason:</strong> "
+        + reason;
+
+
+    document.getElementById("aiResult")
+        .style.display = "block";
+
+
+    /* Put AI result into form */
+
+    document.getElementById("problemType")
+        .value = category;
+
+    document.getElementById("severity")
+        .value = severity;
+
+}
+
+
+/* ---------------------------------------------------------
+   SUBMIT REPORT
+--------------------------------------------------------- */
+
+document
+    .getElementById("reportForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById("residentName")
+            .value.trim();
+
+        const contact =
+            document.getElementById("residentContact")
+            .value.trim();
+
+        const location =
+            document.getElementById("location")
+            .value.trim();
+
+        const description =
+            document.getElementById("description")
+            .value.trim();
+
+        const category =
+            document.getElementById("problemType")
+            .value || "General Drainage Problem";
+
+        const severity =
+            document.getElementById("severity")
+            .value || "Medium";
+
+        const photo =
+            document.getElementById("photoInput")
+            .files[0];
+
+
+        if (!photo) {
+
+            alert(
+                "Please attach a photo of the drainage problem."
+            );
+
+            return;
+        }
+
+
+        const reader = new FileReader();
+
+
+        reader.onload = function(e) {
+
+            const report = {
+
+                id:
+                    "CD-" +
+                    Date.now()
+                    .toString()
+                    .slice(-6),
+
+                name: name,
+
+                contact: contact,
+
+                location: location,
+
+                description: description,
+
+                category: category,
+
+                severity: severity,
+
+                status: "Received",
+
+                photo: e.target.result,
+
+                date:
+                    new Date()
+                    .toLocaleString(),
+
+                updates: [
+                    {
+                        status: "Received",
+                        date:
+                            new Date()
+                            .toLocaleString()
+                    }
+                ]
+
+            };
+
+
+            reports.unshift(report);
+
+
+            localStorage.setItem(
+                "cleanDrainReports",
+                JSON.stringify(reports)
+            );
+
+
+            alert(
+                "Report submitted successfully!\n\n" +
+                "Your Report ID is: " +
+                report.id
+            );
+
+
+            /* RESET FORM */
+
+            document
+                .getElementById("reportForm")
+                .reset();
+
+            document
+                .getElementById("photoPreview")
+                .style.display = "none";
+
+            document
+                .getElementById("aiResult")
+                .style.display = "none";
+
+
+            /* OPEN TRACK PAGE */
+
+            showPage("track");
+
+            document
+                .getElementById("trackInput")
+                .value = report.id;
+
+            trackReport();
+
+        };
+
+
+        reader.readAsDataURL(photo);
+
+    });
+
+
+/* ---------------------------------------------------------
+   STATUS CLASS
+--------------------------------------------------------- */
+
+function getStatusClass(status) {
+
+    if (status === "Received") {
+        return "status-received";
+    }
+
+    if (status === "For Inspection") {
+        return "status-inspection";
+    }
+
+    if (status === "Action in Progress") {
+        return "status-progress";
+    }
+
+    if (status === "Resolved") {
+        return "status-resolved";
+    }
+
+    return "status-received";
+}
+
+
+/* ---------------------------------------------------------
+   TRACK REPORT
+--------------------------------------------------------- */
+
+function trackReport() {
+
+    const id =
+        document
+        .getElementById("trackInput")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const result =
+        document.getElementById("trackResult");
+
+
+    if (!id) {
+
+        alert("Please enter your Report ID.");
+
+        return;
+    }
+
+
+    const report =
+        reports.find(
+            r => r.id.toUpperCase() === id
+        );
+
+
+    if (!report) {
+
+        result.style.display = "block";
+
+        result.innerHTML = `
+
+            <div class="card">
+
+                <div class="empty">
+
+                    <h3>Report Not Found</h3>
+
+                    <p>
+                        Please check your Report ID
+                        and try again.
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    result.style.display = "block";
+
+
+    const statusIndex = [
+        "Received",
+        "For Inspection",
+        "Action in Progress",
+        "Resolved"
+    ].indexOf(report.status);
+
+
+    result.innerHTML = `
+
+        <div class="card">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                gap:15px;
+                flex-wrap:wrap;
+            ">
+
+                <div>
+
+                    <h2>${escapeHTML(report.id)}</h2>
+
+                    <p>
+                        Submitted:
+                        ${escapeHTML(report.date)}
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <span class="status ${getStatusClass(report.status)}">
+                        ${escapeHTML(report.status)}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="tracker">
+
+                ${createTrackingStep(
+                    "1",
+                    "Received",
+                    statusIndex,
+                    0
+                )}
+
+                ${createTrackingStep(
+                    "2",
+                    "For Inspection",
+                    statusIndex,
+                    1
+                )}
+
+                ${createTrackingStep(
+                    "3",
+                    "Action in Progress",
+                    statusIndex,
+                    2
+                )}
+
+                ${createTrackingStep(
+                    "4",
+                    "Resolved",
+                    statusIndex,
+                    3
+                )}
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div>
+
+                    <strong>Resident</strong>
+
+                    <p>
+                        ${escapeHTML(report.name)}
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <strong>Location</strong>
+
+                    <p>
+                        ${escapeHTML(report.location)}
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <strong>Category</strong>
+
+                    <p>
+                        ${escapeHTML(report.category)}
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <strong>Severity</strong>
+
+                    <p>
+                        ${escapeHTML(report.severity)}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <strong>Description</strong>
+
+            <p>
+                ${escapeHTML(report.description)}
+            </p>
+
+
+            <div class="map-box">
+
+                📍 Reported Location:
+                ${escapeHTML(report.location)}
+
+            </div>
+
+
+            <br>
+
+
+            <strong>Photo Evidence</strong>
+
+            <br><br>
+
+            <img
+                src="${report.photo}"
+                alt="Drainage evidence"
+                style="
+                    width:100%;
+                    max-height:400px;
+                    object-fit:cover;
+                    border-radius:12px;
+                ">
+
+        </div>
+
+    `;
+
+}
+
+
+/* ---------------------------------------------------------
+   TRACKING STEP
+--------------------------------------------------------- */
+
+function createTrackingStep(
+    number,
+    title,
+    currentIndex,
+    stepIndex
+) {
+
+    let className = "";
+
+    if (stepIndex < currentIndex) {
+
+        className = "completed";
+
+    }
+
+    else if (stepIndex === currentIndex) {
+
+        className = "current";
+
+    }
+
+
+    return `
+
+        <div class="step ${className}">
+
+            <div class="step-circle">
+                ${number}
+            </div>
+
+            <span>
+                ${title}
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ---------------------------------------------------------
+   DASHBOARD
+--------------------------------------------------------- */
+
+function renderDashboard() {
+
+    const search =
+        document
+        .getElementById("dashboardSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const filter =
+        document
+        .getElementById("dashboardStatus")
+        .value;
+
+
+    /* STATISTICS */
+
+    document.getElementById("totalReports")
+        .textContent = reports.length;
+
+    document.getElementById("inspectionReports")
+        .textContent =
+        reports.filter(
+            r => r.status === "For Inspection"
+        ).length;
+
+    document.getElementById("progressReports")
+        .textContent =
+        reports.filter(
+            r => r.status === "Action in Progress"
+        ).length;
+
+    document.getElementById("resolvedReports")
+        .textContent =
+        reports.filter(
+            r => r.status === "Resolved"
+        ).length;
+
+
+    /* FILTER */
+
+    const filtered =
+        reports.filter(report => {
+
+            const matchesSearch =
+                !search ||
+                report.name.toLowerCase()
+                    .includes(search) ||
+                report.location.toLowerCase()
+                    .includes(search) ||
+                report.id.toLowerCase()
+                    .includes(search);
+
+            const matchesStatus =
+                filter === "All" ||
+                report.status === filter;
+
+            return matchesSearch && matchesStatus;
+
+        });
+
+
+    const table =
+        document.getElementById("dashboardTable");
+
+
+    if (filtered.length === 0) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="7">
+
+                    <div class="empty">
+
+                        No reports found.
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+    }
+
+
+    table.innerHTML =
+        filtered.map(report => `
+
+            <tr>
+
+                <td>
+
+                    <img
+                        class="report-thumbnail"
+                        src="${report.photo}"
+                        alt="Report photo">
+
+                    <br>
+
+                    <small>
+                        ${escapeHTML(report.id)}
+                    </small>
+
+                </td>
+
+
+                <td>
+                    ${escapeHTML(report.name)}
+                </td>
+
+
+                <td>
+                    ${escapeHTML(report.location)}
+                </td>
+
+
+                <td>
+                    ${escapeHTML(report.category)}
+                </td>
+
+
+                <td>
+                    ${escapeHTML(report.severity)}
+                </td>
+
+
+                <td>
+
+                    <span class="status ${getStatusClass(report.status)}">
+
+                        ${escapeHTML(report.status)}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        class="btn btn-blue"
+                        onclick="viewReport('${report.id}')">
+
+                        View
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `).join("");
+
+}
+
+
+/* ---------------------------------------------------------
+   VIEW REPORT
+--------------------------------------------------------- */
+
+function viewReport(id) {
+
+    const report =
+        reports.find(
+            r => r.id === id
+        );
+
+
+    if (!report) {
+        return;
+    }
+
+
+    const modal =
+        document.getElementById("reportModal");
+
+    const body =
+        document.getElementById("modalBody");
+
+
+    body.innerHTML = `
+
+        <img
+            src="${report.photo}"
+            style="
+                width:100%;
+                max-height:350px;
+                object-fit:cover;
+                border-radius:10px;
+                margin-bottom:18px;
+            "
+            alt="Drainage report">
+
+
+        <div class="form-grid">
+
+            <div>
+
+                <strong>Report ID</strong>
+
+                <p>
+                    ${escapeHTML(report.id)}
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <strong>Date Submitted</strong>
+
+                <p>
+                    ${escapeHTML(report.date)}
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <strong>Resident</strong>
+
+                <p>
+                    ${escapeHTML(report.name)}
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <strong>Contact</strong>
+
+                <p>
+                    ${escapeHTML(report.contact || "Not provided")}
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <strong>Category</strong>
+
+                <p>
+                    ${escapeHTML(report.category)}
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <strong>Severity</strong>
+
+                <p>
+                    ${escapeHTML(report.severity)}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+
+        <strong>Location</strong>
+
+        <p>
+            ${escapeHTML(report.location)}
+        </p>
+
+
+        <div class="map-box">
+
+            📍 ${escapeHTML(report.location)}
+
+        </div>
+
+
+        <br>
+
+
+        <strong>Description</strong>
+
+        <p>
+            ${escapeHTML(report.description)}
+        </p>
+
+
+        <hr style="margin:20px 0;border:none;border-top:1px solid #ddd;">
+
+
+        <h3>Update Report Status</h3>
+
+        <br>
+
+
+        <select id="modalStatus">
+
+            <option
+                ${report.status === "Received" ? "selected" : ""}>
+                Received
+            </option>
+
+            <option
+                ${report.status === "For Inspection" ? "selected" : ""}>
+                For Inspection
+            </option>
+
+            <option
+                ${report.status === "Action in Progress" ? "selected" : ""}>
+                Action in Progress
+            </option>
+
+            <option
+                ${report.status === "Resolved" ? "selected" : ""}>
+                Resolved
+            </option>
+
+        </select>
+
+
+        <br><br>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="updateReportStatus('${report.id}')">
+
+            Save Status
+
+        </button>
+
+    `;
+
+
+    modal.style.display = "flex";
+
+}
+
+
+/* ---------------------------------------------------------
+   UPDATE STATUS
+--------------------------------------------------------- */
+
+function updateReportStatus(id) {
+
+    const report =
+        reports.find(
+            r => r.id === id
+        );
+
+
+    if (!report) {
+        return;
+    }
+
+
+    const newStatus =
+        document
+        .getElementById("modalStatus")
+        .value;
+
+
+    if (report.status !== newStatus) {
+
+        report.status = newStatus;
+
+
+        report.updates.push({
+
+            status: newStatus,
+
+            date:
+                new Date()
+                .toLocaleString()
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "cleanDrainReports",
+        JSON.stringify(reports)
+    );
+
+
+    closeModal();
+
+    renderDashboard();
+
+
+    alert(
+        "Report status updated to: " +
+        newStatus
+    );
+
+}
+
+
+/* ---------------------------------------------------------
+   MODAL
+--------------------------------------------------------- */
+
+function closeModal() {
+
+    document
+        .getElementById("reportModal")
+        .style.display = "none";
+
+}
+
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+        const modal =
+            document.getElementById("reportModal");
+
+        if (event.target === modal) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* ---------------------------------------------------------
+   SECURITY HELPER
+--------------------------------------------------------- */
+
+function escapeHTML(value) {
+
+    if (value === undefined || value === null) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ---------------------------------------------------------
+   INITIALIZE
+--------------------------------------------------------- */
+
+renderDashboard();
+
+</script>
+
+</body>
+</html>
